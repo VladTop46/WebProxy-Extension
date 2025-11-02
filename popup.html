@@ -3,69 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <title>Proxy Extension</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --text-primary: #1a1a1a;
+      --text-secondary: #6c757d;
+      --border-color: #e9ecef;
+      --accent-color: #007bff;
+      --accent-hover: #0056b3;
+      --success-color: #28a745;
+      --success-hover: #1e7e34;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #1e1e1e;
+      --bg-secondary: #2d2d2d;
+      --text-primary: #e8e8e8;
+      --text-secondary: #b0b0b0;
+      --border-color: #3d3d3d;
+      --accent-color: #4a9eff;
+      --accent-hover: #2a7fd7;
+      --success-color: #30c656;
+      --success-hover: #1e8a3a;
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-weight: 500;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background 0.3s, color 0.3s;
     }
-    .container { 
-      width: 300px;
-      padding: 15px;
+
+    .container {
+      width: 380px;
+      padding: 20px;
     }
+
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
+
     .header h2 {
-      margin: 0;
       font-size: 1.5rem;
+      font-weight: 700;
     }
-    .settings-icon {
-      cursor: pointer;
-      padding: 5px;
-      border-radius: 4px;
-      transition: background-color 0.2s;
+
+    .header-controls {
+      display: flex;
+      gap: 8px;
     }
-    .settings-icon:hover {
-      background-color: rgba(0,0,0,0.1);
-    }
-    .ip-block {
-      background: #f8f9fa;
-      padding: 10px;
-      border-radius: 4px;
-      margin: 15px 0;
-    }
-    .status-block {
-      text-align: center;
-      margin: 10px 0;
-      color: #6c757d;
-    }
-    .hidden { 
-      display: none; 
-    }
-    .language-select {
-      margin-bottom: 15px;
-    }
+
     .btn-icon {
       border: none;
       background: none;
-      padding: 5px;
+      padding: 8px;
       cursor: pointer;
+      color: var(--text-primary);
+      border-radius: 6px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .btn-icon:hover {
-      background-color: rgba(0,0,0,0.1);
-      border-radius: 4px;
+      background-color: var(--bg-secondary);
     }
+
     .btn-icon:focus {
       outline: none;
     }
+
+    .toggle-theme {
+      width: 36px;
+      height: 36px;
+    }
+
     #toggle-proxy {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       padding: 0;
       margin: 20px auto;
@@ -73,60 +101,322 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      background: linear-gradient(145deg, #007bff, #0056b3);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
+
+    #toggle-proxy::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.3s;
+    }
+
     #toggle-proxy:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
     }
+
+    #toggle-proxy:hover::before {
+      left: 100%;
+    }
+
     #toggle-proxy:active {
       transform: scale(0.95);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
-    #toggle-proxy svg {
-      width: 40px;
-      height: 40px;
-      stroke: white;
-      stroke-width: 2;
-      transition: all 0.3s ease;
-    }
+
     .ip-block {
-      background: #f8f9fa;
-      padding: 10px;
-      border-radius: 4px;
-      margin: 15px 0;
+      background: var(--bg-secondary);
+      padding: 16px;
+      border-radius: 8px;
+      margin: 20px 0;
       text-align: center;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s;
+    }
+
+    .ip-label {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .ip-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-color);
+      font-family: 'Monaco', 'Menlo', monospace;
+    }
+
+    .status-block {
+      text-align: center;
+      margin: 15px 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+
+    .status-indicator.connected {
+      background: var(--success-color);
+    }
+
+    .status-indicator.disconnected {
+      background: var(--text-secondary);
+      animation: none;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Settings Styles */
+    .language-select {
+      margin-bottom: 20px;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .language-select label {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-right: 10px;
+    }
+
+    .btn-group {
+      display: inline-flex;
+      gap: 4px;
+    }
+
+    .btn-group button {
+      padding: 6px 14px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .btn-group button:hover {
+      background: var(--bg-secondary);
+    }
+
+    .btn-group button.active {
+      background: var(--accent-color);
+      color: white;
+      border-color: var(--accent-color);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="number"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group small {
+      display: block;
+      margin-top: 6px;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    .form-check {
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .form-check:hover {
+      background: var(--border-color);
+    }
+
+    .form-check input[type="radio"],
+    .form-check input[type="checkbox"] {
+      margin-right: 10px;
+      cursor: pointer;
+      accent-color: var(--accent-color);
+    }
+
+    .form-check label {
+      margin: 0;
+      cursor: pointer;
+      color: var(--text-primary);
+      font-weight: 500;
+      flex: 1;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      margin-bottom: 10px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--border-color);
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .proxy-type-group {
+      background: var(--bg-secondary);
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    .proxy-type-group label {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      color: var(--text-secondary);
+    }
+
+    .proxy-type-group .form-check {
+      background: transparent;
+      padding: 8px 0;
+      border: none;
+    }
+
+    .proxy-type-group .form-check:hover {
+      background: transparent;
     }
   </style>
 </head>
 <body>
+  <!-- Main Section -->
   <div class="container" id="main-section">
     <div class="header">
       <h2 class="title">Proxy Extension</h2>
-      <button id="open-settings" class="btn-icon" title="Settings">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-      </button>
+      <div class="header-controls">
+        <button id="toggle-theme" class="btn-icon toggle-theme" title="Toggle theme"></button>
+        <button id="open-settings" class="btn-icon" title="Settings"></button>
+      </div>
     </div>
     
-    <button id="toggle-proxy" class="btn btn-primary">Connect to Proxy</button>
+    <button id="toggle-proxy" class="btn">Connect</button>
     
     <div class="ip-block">
-      Current IP: <span id="current-ip">Loading...</span>
+      <div class="ip-label">Current IP</div>
+      <div class="ip-value" id="current-ip">Loading...</div>
     </div>
     
-    <div class="status-block" id="connection-status"></div>
+    <div class="status-block">
+      <span class="status-indicator disconnected"></span>
+      <span id="connection-status">Disconnected</span>
+    </div>
   </div>
 
+  <!-- Settings Section -->
   <div class="container hidden" id="settings-section">
-    <h2 class="mt-3 mb-4">Settings</h2>
+    <div class="settings-header">
+      <h2>Settings</h2>
+      <button id="back-button-top" class="btn-icon"></button>
+    </div>
     
     <div class="language-select">
-      <label class="mr-3">Language:</label>
+      <label>Language:</label>
       <div class="btn-group" role="group">
         <button type="button" class="btn btn-outline-secondary lang-btn" data-lang="ru">RU</button>
         <button type="button" class="btn btn-outline-secondary lang-btn" data-lang="en">EN</button>
@@ -135,13 +425,33 @@
 
     <form id="settings-form">
       <div class="form-group">
+        <label for="proxy-type">Proxy Type</label>
+        <select id="proxy-type">
+          <option value="http">HTTP</option>
+          <option value="socks5">SOCKS5</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label for="proxy-ip">Proxy IP Address</label>
         <input type="text" class="form-control" id="proxy-ip" placeholder="Enter proxy IP">
       </div>
+
       <div class="form-group">
         <label for="proxy-port">Proxy Port</label>
         <input type="number" class="form-control" id="proxy-port" placeholder="Enter proxy port">
       </div>
+
+      <div class="form-group">
+        <label for="proxy-username">Username (optional)</label>
+        <input type="text" class="form-control" id="proxy-username" placeholder="Leave empty if not needed">
+      </div>
+
+      <div class="form-group">
+        <label for="proxy-password">Password (optional)</label>
+        <input type="text" class="form-control" id="proxy-password" placeholder="Leave empty if not needed">
+      </div>
+
       <div class="form-group">
         <label>Split Tunneling Mode</label>
         <div class="form-check">
@@ -157,19 +467,30 @@
           <label class="form-check-label" for="mode-blacklist">Blacklist Mode</label>
         </div>
       </div>
+
       <div class="form-group">
         <label for="site-list">Site List (one domain per line)</label>
         <textarea class="form-control" id="site-list" placeholder="example.com"></textarea>
-        <small class="form-text text-muted">Enter domains without http://, https:// or www prefix. You can use wildcards, e.g. *.example.com</small>
+        <small>Enter domains without http://, https:// or www prefix. You can use wildcards, e.g. *.example.com</small>
+        <div style="display: flex; gap: 8px; margin-top: 10px;">
+          <button type="button" id="export-sites" class="btn btn-secondary" style="flex: 1; margin-bottom: 0;">Export Sites</button>
+          <button type="button" id="import-sites" class="btn btn-secondary" style="flex: 1; margin-bottom: 0;">Import Sites</button>
+        </div>
+        <input type="file" id="import-file" accept=".txt" style="display: none;">
       </div>
-      <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="auto-connect">
-        <label class="form-check-label" for="auto-connect">Auto-connect on browser start</label>
+
+      <div class="form-group">
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="auto-connect">
+          <label class="form-check-label" for="auto-connect">Auto-connect on browser start</label>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Save Settings</button>
+
+      <button type="submit" class="btn btn-primary">Save Settings</button>
     </form>
-    <button id="back-button" class="btn btn-secondary btn-block mt-3 mb-3">Back</button>
+    <button id="back-button" class="btn btn-secondary">Back</button>
   </div>
+
   <script src="popup.js"></script>
 </body>
 </html>

@@ -1,25 +1,39 @@
 function getProxySettings(callback) {
   chrome.storage.sync.get(
-    ['proxyIP', 'proxyPort', 'tunnelMode', 'siteList'], 
+    ['proxyType', 'proxyIP', 'proxyPort', 'proxyUsername', 'proxyPassword', 'tunnelMode', 'siteList'], 
     function(result) {
+      const proxyType = result.proxyType || 'http';
       const proxyIP = result.proxyIP || '127.0.0.1';
       const proxyPort = result.proxyPort || 8023;
+      const proxyUsername = result.proxyUsername || '';
+      const proxyPassword = result.proxyPassword || '';
       const tunnelMode = result.tunnelMode || 'none';
       const siteList = result.siteList || [];
-      
-      // Basic proxy settings
+
+      // Определяем схему прокси
+      let scheme = proxyType === 'socks5' ? 'socks5' : 'http';
+
+      // Basic proxy settings без туннелирования
       if (tunnelMode === 'none' || siteList.length === 0) {
-        callback({
+        const proxySettings = {
           mode: 'fixed_servers',
           rules: {
             singleProxy: {
-              scheme: 'http',
+              scheme: scheme,
               host: proxyIP,
               port: parseInt(proxyPort)
             },
             bypassList: ['<local>']
           }
-        });
+        };
+
+        // Добавляем аутентификацию если она указана
+        if (proxyUsername && proxyPassword) {
+          proxySettings.rules.singleProxy.username = proxyUsername;
+          proxySettings.rules.singleProxy.password = proxyPassword;
+        }
+
+        callback(proxySettings);
         return;
       }
 
@@ -32,8 +46,11 @@ function getProxySettings(callback) {
         return domain;
       });
 
-      // Create PAC script
-      const proxyString = `PROXY ${proxyIP}:${proxyPort}`;
+      // Create PAC script с поддержкой SOCKS5
+      const proxyString = scheme === 'socks5' 
+        ? `SOCKS5 ${proxyIP}:${proxyPort}` 
+        : `PROXY ${proxyIP}:${proxyPort}`;
+
       const pacScript = `
         function FindProxyForURL(url, host) {
           host = host.toLowerCase();

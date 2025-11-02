@@ -1,30 +1,37 @@
 // Локализация
 const translations = {
   ru: {
-    title: '\u041F\u0440\u043E\u043A\u0441\u0438',
-    connect: '\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C',
-    disconnect: '\u041E\u0442\u043A\u043B\u044E\u0447\u0438\u0442\u044C',
-    currentIP: '\u0422\u0435\u043A\u0443\u0449\u0438\u0439 IP:',
-    loading: '\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0430...',
-    settings: '\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438',
-    proxyIP: 'IP \u0430\u0434\u0440\u0435\u0441 \u043F\u0440\u043E\u043A\u0441\u0438',
-    proxyPort: '\u041F\u043E\u0440\u0442 \u043F\u0440\u043E\u043A\u0441\u0438',
-    tunnelMode: '\u0420\u0435\u0436\u0438\u043C \u0442\u0443\u043D\u043D\u0435\u043B\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F',
-    none: '\u041E\u0442\u043A\u043B\u044E\u0447\u0435\u043D',
-    whitelist: '\u0411\u0435\u043B\u044B\u0439 \u0441\u043F\u0438\u0441\u043E\u043A',
-    blacklist: '\u0427\u0435\u0440\u043D\u044B\u0439 \u0441\u043F\u0438\u0441\u043E\u043A',
-    siteList: '\u0421\u043F\u0438\u0441\u043E\u043A \u0441\u0430\u0439\u0442\u043E\u0432 (\u043F\u043E \u043E\u0434\u043D\u043E\u043C\u0443 \u0432 \u0441\u0442\u0440\u043E\u043A\u0435)',
-    autoConnect: '\u0410\u0432\u0442\u043E\u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435 \u043F\u0440\u0438 \u0437\u0430\u043F\u0443\u0441\u043A\u0435',
-    save: '\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C',
-    back: '\u041D\u0430\u0437\u0430\u0434',
-    connected: '\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u043E',
-    disconnected: '\u041E\u0442\u043A\u043B\u044E\u0447\u0435\u043D\u043E',
-    statusWhitelist: '\u0420\u0435\u0436\u0438\u043C \u0431\u0435\u043B\u043E\u0433\u043E \u0441\u043F\u0438\u0441\u043A\u0430',
-    statusBlacklist: '\u0420\u0435\u0436\u0438\u043C \u0447\u0435\u0440\u043D\u043E\u0433\u043E \u0441\u043F\u0438\u0441\u043A\u0430',
-    settingsSaved: '\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u044B',
-    enterIP: '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 IP \u043F\u0440\u043E\u043A\u0441\u0438',
-    enterPort: '\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u043E\u0440\u0442',
-    domainExample: 'example.com'
+    title: 'Прокси',
+    connect: 'Подключить',
+    disconnect: 'Отключить',
+    currentIP: 'Текущий IP:',
+    loading: 'Загрузка...',
+    settings: 'Настройки',
+    proxyIP: 'IP адрес прокси',
+    proxyPort: 'Порт прокси',
+    proxyType: 'Тип прокси',
+    proxyUsername: 'Имя пользователя (опционально)',
+    proxyPassword: 'Пароль (опционально)',
+    tunnelMode: 'Режим туннелирования',
+    none: 'Отключен',
+    whitelist: 'Белый список',
+    blacklist: 'Черный список',
+    siteList: 'Список сайтов (по одному в строке)',
+    autoConnect: 'Автоподключение при запуске',
+    save: 'Сохранить',
+    back: 'Назад',
+    connected: 'Подключено',
+    disconnected: 'Отключено',
+    statusWhitelist: 'Режим белого списка',
+    statusBlacklist: 'Режим черного списка',
+    settingsSaved: 'Настройки сохранены',
+    enterIP: 'Введите IP прокси',
+    enterPort: 'Введите порт',
+    domainExample: 'example.com',
+    language: 'Язык:',
+    exportSites: 'Экспортировать',
+    importSites: 'Импортировать',
+    emptyList: 'Список пуст!'
   },
   en: {
     title: 'Proxy Extension',
@@ -35,6 +42,9 @@ const translations = {
     settings: 'Settings',
     proxyIP: 'Proxy IP Address',
     proxyPort: 'Proxy Port',
+    proxyType: 'Proxy Type',
+    proxyUsername: 'Username (optional)',
+    proxyPassword: 'Password (optional)',
     tunnelMode: 'Split Tunneling Mode',
     none: 'None',
     whitelist: 'Whitelist Mode',
@@ -50,29 +60,104 @@ const translations = {
     settingsSaved: 'Settings saved',
     enterIP: 'Enter proxy IP',
     enterPort: 'Enter proxy port',
-    domainExample: 'example.com'
+    domainExample: 'example.com',
+    language: 'Language:',
+    exportSites: 'Export Sites',
+    importSites: 'Import Sites',
+    emptyList: 'List is empty!'
   }
 };
 
-let currentLang = 'ru'; // По умолчанию русский
+let currentLang = 'ru';
 
 // Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', function() {
-  chrome.storage.sync.get(['language'], function(result) {
+  // Загрузим язык и тему
+  chrome.storage.sync.get(['language', 'theme'], function(result) {
     if (result.language) {
       currentLang = result.language;
     }
+    const theme = result.theme || 'light';
+    applyTheme(theme);
+    loadIcons();
     updateLanguage(currentLang);
     initializeUI();
   });
 });
 
+function loadIcons() {
+  loadSvgIcon('toggle-theme', 'icons/frontend/sun.svg');
+  loadSvgIcon('open-settings', 'icons/frontend/settings.svg');
+  loadSvgIcon('back-button-top', 'icons/frontend/arrow-left.svg');
+}
+
+function loadSvgIcon(elementId, svgPath) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  fetch(chrome.runtime.getURL(svgPath))
+    .then(response => {
+      if (!response.ok) throw new Error('SVG not found');
+      return response.text();
+    })
+    .then(svgContent => {
+      element.innerHTML = svgContent;
+      // Устанавливаем атрибуты для SVG
+      const svg = element.querySelector('svg');
+      if (svg) {
+        svg.setAttribute('width', '20');
+        svg.setAttribute('height', '20');
+        svg.setAttribute('viewBox', svg.getAttribute('viewBox') || '0 0 24 24');
+      }
+    })
+    .catch(err => {
+      console.warn(`Failed to load icon ${svgPath}:`, err);
+      // Fallback: используем встроенный SVG
+      loadFallbackIcon(elementId);
+    });
+}
+
+function loadFallbackIcon(elementId) {
+  const fallbacks = {
+    'toggle-theme': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>',
+    'open-settings': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6"/><path d="M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24"/><path d="M1 12h6m6 0h6"/><path d="M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"/></svg>',
+    'back-button-top': '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>'
+  };
+  
+  const element = document.getElementById(elementId);
+  if (element && fallbacks[elementId]) {
+    element.innerHTML = fallbacks[elementId];
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const themeBtn = document.getElementById('toggle-theme');
+  if (themeBtn) {
+    themeBtn.setAttribute('data-theme', theme);
+  }
+}
+
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  applyTheme(newTheme);
+  chrome.storage.sync.set({theme: newTheme});
+}
+
 function initializeUI() {
   // Обработчики событий
   document.getElementById('toggle-proxy').addEventListener('click', toggleProxy);
   document.getElementById('open-settings').addEventListener('click', openSettings);
+  document.getElementById('toggle-theme').addEventListener('click', toggleTheme);
   document.getElementById('back-button').addEventListener('click', goBack);
+  document.getElementById('back-button-top').addEventListener('click', goBack);
   document.getElementById('settings-form').addEventListener('submit', saveSettings);
+  document.getElementById('export-sites').addEventListener('click', exportSites);
+  document.getElementById('import-sites').addEventListener('click', () => {
+    document.getElementById('import-file').click();
+  });
+  document.getElementById('import-file').addEventListener('change', importSites);
 
   // Обработчики кнопок языка
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -89,6 +174,10 @@ function initializeUI() {
   chrome.storage.sync.get(['proxyEnabled'], function(result) {
     updateProxyState(result.proxyEnabled || false);
   });
+
+  // Обновляем IP каждые 5 секунд
+  fetchCurrentIP();
+  setInterval(fetchCurrentIP, 5000);
 }
 
 function updateLanguage(lang) {
@@ -102,22 +191,27 @@ function updateLanguage(lang) {
   // Обновляем все тексты
   document.querySelector('.title').textContent = t.title;
   const toggleBtn = document.getElementById('toggle-proxy');
-  toggleBtn.textContent = toggleBtn.textContent.includes('Disconnect') ? t.disconnect : t.connect;
+  toggleBtn.textContent = toggleBtn.textContent.includes('Disconnect') || toggleBtn.textContent === t.disconnect ? t.disconnect : t.connect;
   
   // Обновляем текст IP
   const ipElement = document.querySelector('#current-ip');
-  ipElement.previousSibling.textContent = t.currentIP + ' ';
-  if (ipElement.textContent === 'Loading...') {
+  const ipLabel = document.querySelector('.ip-label');
+  ipLabel.textContent = t.currentIP;
+  
+  if (ipElement.textContent === 'Loading...' || ipElement.textContent === t.loading) {
     ipElement.textContent = t.loading;
   }
 
   // Обновляем заголовки в настройках
   document.querySelector('#settings-section h2').textContent = t.settings;
   
-  // Обновляем тексты в форме настроек
+  // Обновляем labels в форме
   const labels = {
+    'proxy-type': t.proxyType,
     'proxy-ip': t.proxyIP,
     'proxy-port': t.proxyPort,
+    'proxy-username': t.proxyUsername,
+    'proxy-password': t.proxyPassword,
     'mode-none': t.none,
     'mode-whitelist': t.whitelist,
     'mode-blacklist': t.blacklist,
@@ -127,7 +221,9 @@ function updateLanguage(lang) {
 
   for (const [id, text] of Object.entries(labels)) {
     const label = document.querySelector(`label[for="${id}"]`);
-    if (label) label.textContent = text;
+    if (label && id !== 'auto-connect') {
+      label.textContent = text;
+    }
   }
 
   // Обновляем placeholder'ы
@@ -139,12 +235,25 @@ function updateLanguage(lang) {
   document.querySelector('button[type="submit"]').textContent = t.save;
   document.getElementById('back-button').textContent = t.back;
 
+  // Обновляем чекбокс лейбл
+  const autoConnectLabel = document.querySelector('label[for="auto-connect"]');
+  if (autoConnectLabel) {
+    autoConnectLabel.textContent = t.autoConnect;
+  }
+
+  // Обновляем языкой лейбл
+  const langLabel = document.querySelector('.language-select label');
+  if (langLabel) {
+    langLabel.textContent = t.language;
+  }
+
   updateStatus();
 }
 
 function updateStatus() {
   chrome.storage.sync.get(['proxyEnabled', 'tunnelMode'], function(result) {
     const statusElement = document.getElementById('connection-status');
+    const statusIndicator = document.querySelector('.status-indicator');
     const t = translations[currentLang];
     
     let status = result.proxyEnabled ? t.connected : t.disconnected;
@@ -153,6 +262,12 @@ function updateStatus() {
     }
     
     statusElement.textContent = status;
+    
+    // Обновляем индикатор
+    if (statusIndicator) {
+      statusIndicator.classList.toggle('connected', result.proxyEnabled);
+      statusIndicator.classList.toggle('disconnected', !result.proxyEnabled);
+    }
   });
 }
 
@@ -167,10 +282,7 @@ function toggleProxy() {
 
 function updateProxyState(enabled) {
   const t = translations[currentLang];
-  const statusElement = document.getElementById('connection-status');
   const buttonElement = document.getElementById('toggle-proxy');
-  const iconPath = enabled ? 'icons/connected_icon' : 'icons/icon';
-  const title = enabled ? `${t.title} (${t.connected})` : `${t.title} (${t.disconnected})`;
 
   if (enabled) {
     chrome.runtime.sendMessage({type: 'enableProxy'}, function(response) {
@@ -178,7 +290,6 @@ function updateProxyState(enabled) {
         console.log('Error enabling proxy:', chrome.runtime.lastError);
       }
     });
-    buttonElement.style.background = 'linear-gradient(145deg, #28a745, #1e7e34)';
     buttonElement.textContent = t.disconnect;
   } else {
     chrome.runtime.sendMessage({type: 'disableProxy'}, function(response) {
@@ -186,18 +297,10 @@ function updateProxyState(enabled) {
         console.log('Error disabling proxy:', chrome.runtime.lastError);
       }
     });
-    buttonElement.style.background = 'linear-gradient(145deg, #007bff, #0056b3)';
     buttonElement.textContent = t.connect;
   }
 
-  chrome.action.setIcon({ path: {
-    "16": iconPath + "16.png",
-    "48": iconPath + "48.png",
-    "128": iconPath + "128.png"
-  }});
-
   setTimeout(fetchCurrentIP, 500);
-  chrome.action.setTitle({ title: title });
   updateStatus();
 }
 
@@ -215,8 +318,11 @@ function goBack() {
 function saveSettings(event) {
   event.preventDefault();
 
+  const proxyType = document.getElementById('proxy-type').value;
   const proxyIP = document.getElementById('proxy-ip').value;
   const proxyPort = document.getElementById('proxy-port').value;
+  const proxyUsername = document.getElementById('proxy-username').value;
+  const proxyPassword = document.getElementById('proxy-password').value;
   const autoConnect = document.getElementById('auto-connect').checked;
   const tunnelMode = document.querySelector('input[name="tunnel-mode"]:checked').value;
   const siteList = document.getElementById('site-list').value
@@ -225,29 +331,31 @@ function saveSettings(event) {
     .filter(s => s.length > 0);
 
   chrome.storage.sync.set({
+    proxyType: proxyType,
     proxyIP: proxyIP,
     proxyPort: proxyPort,
+    proxyUsername: proxyUsername,
+    proxyPassword: proxyPassword,
     autoConnect: autoConnect,
     tunnelMode: tunnelMode,
     siteList: siteList
   }, function() {
     chrome.runtime.sendMessage({type: 'updateProxySettings'}, function(response) {
-      if (chrome.runtime.lastError) {
-        console.log('Error updating settings:', chrome.runtime.lastError);
-        alert(translations[currentLang].settingsSaved);
-      } else {
-        alert(translations[currentLang].settingsSaved);
-      }
+      const t = translations[currentLang];
+      alert(t.settingsSaved);
     });
   });
 }
 
 function restoreSettings() {
   chrome.storage.sync.get(
-    ['proxyIP', 'proxyPort', 'autoConnect', 'tunnelMode', 'siteList'], 
+    ['proxyType', 'proxyIP', 'proxyPort', 'proxyUsername', 'proxyPassword', 'autoConnect', 'tunnelMode', 'siteList'], 
     function(result) {
+      document.getElementById('proxy-type').value = result.proxyType || 'http';
       document.getElementById('proxy-ip').value = result.proxyIP || '';
       document.getElementById('proxy-port').value = result.proxyPort || '';
+      document.getElementById('proxy-username').value = result.proxyUsername || '';
+      document.getElementById('proxy-password').value = result.proxyPassword || '';
       document.getElementById('auto-connect').checked = result.autoConnect || false;
       
       const mode = result.tunnelMode || 'none';
@@ -260,7 +368,6 @@ function restoreSettings() {
 
 function fetchCurrentIP() {
   const ipElement = document.getElementById('current-ip');
-  ipElement.textContent = translations[currentLang].loading;
   
   fetch('https://api.ipify.org?format=json')
     .then(response => response.json())
@@ -270,4 +377,49 @@ function fetchCurrentIP() {
     .catch(() => {
       ipElement.textContent = 'Error';
     });
+}
+
+function exportSites() {
+  const siteList = document.getElementById('site-list').value;
+  const t = translations[currentLang];
+  
+  if (!siteList.trim()) {
+    alert(t.emptyList);
+    return;
+  }
+
+  // Создаем blob с содержимым
+  const blob = new Blob([siteList], {type: 'text/plain'});
+  const url = URL.createObjectURL(blob);
+  
+  // Создаем ссылку для загрузки
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `proxy-sites-${new Date().toISOString().split('T')[0]}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+function importSites(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const content = e.target.result;
+    const textarea = document.getElementById('site-list');
+    
+    // Если уже есть текст, добавляем с новой строки
+    if (textarea.value.trim()) {
+      textarea.value += '\n' + content;
+    } else {
+      textarea.value = content;
+    }
+  };
+  reader.readAsText(file);
+  
+  // Очищаем input для возможности повторной загрузки
+  event.target.value = '';
 }

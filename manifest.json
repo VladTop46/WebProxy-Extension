@@ -1,12 +1,18 @@
 {
   "manifest_version": 3,
   "name": "Proxy Extension",
-  "version": "1.1",
-  "description": "Extension to connect to a proxy server.",
+  "version": "2.0",
+  "description": "Advanced proxy extension with SOCKS5 support and dark theme.",
   "permissions": [
     "proxy",
     "activeTab",
     "storage"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icons/frontend/*.svg"],
+      "matches": ["<all_urls>"]
+    }
   ],
   "action": {
     "default_popup": "popup.html",

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Adding padding by scaling and translating the icon -->
+    <group
+        android:translateX="24"
+        android:translateY="24"
+        android:scaleX="0.55"
+        android:scaleY="0.55">
+
+        <!-- Shield Background -->
+        <path
+            android:pathData="M54,8L96,28V52C96,78 78,94 54,100C30,94 12,78 12,52V28L54,8Z"
+            android:fillColor="#006687"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2"/>
+
+        <!-- Wave Pattern -->
+        <path
+            android:pathData="M54,32C64,32 64,38 74,38L74,52C64,52 64,46 54,46C44,46 44,52 34,52L34,38C44,38 44,32 54,32ZM54,48C64,48 64,54 74,54L74,68C64,68 64,62 54,62C44,62 44,68 34,68L34,54C44,54 44,48 54,48Z"
+            android:fillColor="#C3E8FF"
+            android:fillAlpha="0.9"/>
+
+        <!-- Lock Body -->
+        <path
+            android:pathData="M44,55H64V75H44V55Z"
+            android:fillColor="#FFFFFF"/>
+
+        <!-- Lock Shackle (outline only) -->
+        <path
+            android:pathData="M54,42C58,42 61,45 61,49V55H47V49C47,45 50,42 54,42Z"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="2"
+            android:fillColor="#00000000"/>
+
+        <!-- Keyhole -->
+        <path
+            android:pathData="M54,65m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
+            android:fillColor="#006687"/>
+        <path
+            android:pathData="M54,68L54,71"
+            android:strokeColor="#006687"
+            android:strokeWidth="2"
+            android:strokeLineCap="round"/>
+    </group>
+</vector>
